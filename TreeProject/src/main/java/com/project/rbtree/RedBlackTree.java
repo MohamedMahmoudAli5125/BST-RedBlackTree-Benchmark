@@ -282,4 +282,13 @@ public class RedBlackTree {
     public int size() {
         return this.count;
     }
+    public int height(){
+        return heightRec(root);
+    }
+    public int heightRec(RBTNode node){
+        if(node == T_nil){
+            return  -1 ;
+        }
+        return 1 +  Math.max(heightRec(node.left) , heightRec(node.right));
+    }
 }

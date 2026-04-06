@@ -13,13 +13,13 @@ public class Main {
 
         while (true) {
             System.out.println("\n--- Tree Operations ---");
-            System.out.println("1. Insert to BST   2. Delete from BST   3. View BST   4. BST In-Order & Size");
-            System.out.println("5. Insert to RBT   6. Delete from RBT   7. View RBT   8. RBT In-Order & Size");
-            System.out.println("9. Exit");
+            System.out.println("1. Insert to BST   2. Delete from BST   3. View BST   4. BST In-Order & Size 5. BST height");
+            System.out.println("6. Insert to RBT   7. Delete from RBT   8. View RBT   9. RBT In-Order & Size 10. RBT height");
+            System.out.println("11. Exit");
             System.out.print("Choice: ");
 
             int choice = scanner.nextInt();
-            if (choice == 9) break;
+            if (choice == 11) break;
 
             if (choice == 3) {
                 System.out.println("\nBinary Search Tree Structure:");
@@ -31,14 +31,22 @@ public class Main {
                 System.out.println("BST In-Order: " + Arrays.toString(bst.inOrder()));
                 continue;
             }
-            if (choice == 7) {
+            if (choice == 8) {
                 System.out.println("\nRed-Black Tree Structure:");
                 rbt.printTree();
                 continue;
             }
-            if (choice == 8) {
+            if (choice == 9) {
                 System.out.println("RBT Size: " + rbt.size() );
                 System.out.println("RBT In-Order: " + Arrays.toString(rbt.inOrder()));
+                continue;
+            }
+            if (choice == 5) {
+                System.out.println("BST Height: " + bst.height() );
+                continue;
+            }
+            if (choice == 10) {
+                System.out.println("RBT Height: " + rbt.height() );
                 continue;
             }
 
@@ -54,11 +62,11 @@ public class Main {
                     if (bst.delete(val)) System.out.println(val + " deleted from BST.");
                     else System.out.println(val + " not found in BST.");
                     break;
-                case 5:
+                case 6:
                     if (rbt.insert(val)) System.out.println(val + " inserted into RBT.");
                     else System.out.println(val + " already exists in RBT.");
                     break;
-                case 6:
+                case 7:
                     if (rbt.delete(val)) System.out.println(val + " deleted from RBT.");
                     else System.out.println(val + " not found in RBT.");
                     break;
