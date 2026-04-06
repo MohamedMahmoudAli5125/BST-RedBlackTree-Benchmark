@@ -126,6 +126,119 @@ public  void  RightRotate(RBTNode node){
         printHelper(this.root, "", true);
     }
 
+    public boolean delete(int v) {
+        RBTNode z = root;
+        while (z != T_nil) {
+            if (z.val == v) break;
+            z = (v < z.val) ? z.left : z.right;
+        }
+
+        if (z == T_nil) return false;
+
+        RBTNode x;
+        RBTNode y = z;
+        Color yOriginalColor = y.color;
+
+        if (z.left == T_nil) {
+            x = z.right;
+            transplant(z, z.right);
+        } else if (z.right == T_nil) {
+            x = z.left;
+            transplant(z, z.left);
+        } else { // حالة: ابنين
+            y = minimum(z.right);
+            yOriginalColor = y.color;
+            x = y.right;
+            if (y.parent == z) {
+                x.parent = y;
+            } else {
+                transplant(y, y.right);
+                y.right = z.right;
+                y.right.parent = y;
+            }
+            transplant(z, y);
+            y.left = z.left;
+            y.left.parent = y;
+            y.color = z.color;
+        }
+
+        if (yOriginalColor == Color.BLACK) {
+            deleteFixup(x);
+        }
+        return true ;
+    }
+
+    private void transplant(RBTNode u, RBTNode v) {
+        if (u.parent == T_nil) {
+            root = v;
+        } else if (u == u.parent.left) {
+            u.parent.left = v;
+        } else {
+            u.parent.right = v;
+        }
+        v.parent = u.parent;
+    }
+
+    private RBTNode minimum(RBTNode node) {
+        while (node.left != T_nil) node = node.left;
+        return node;
+    }
+    private void deleteFixup(RBTNode x) {
+        while (x != root && x.color == Color.BLACK) {
+            if (x == x.parent.left) {
+                RBTNode w = x.parent.right;
+
+                if (w.color == Color.RED) {
+                    w.color = Color.BLACK;
+                    x.parent.color = Color.RED;
+                    LeftRotate(x.parent);
+                    w = x.parent.right;
+                }
+
+                if (w.left.color == Color.BLACK && w.right.color == Color.BLACK) {
+                    w.color = Color.RED;
+                    x = x.parent;
+                } else {
+                    if (w.right.color == Color.BLACK) {
+                        w.left.color = Color.BLACK;
+                        w.color = Color.RED;
+                        RightRotate(w);
+                        w = x.parent.right;
+                    }
+                    w.color = x.parent.color;
+                    x.parent.color = Color.BLACK;
+                    w.right.color = Color.BLACK;
+                    LeftRotate(x.parent);
+                    x = root;
+                }
+            } else {
+                RBTNode w = x.parent.left;
+                if (w.color == Color.RED) {
+                    w.color = Color.BLACK;
+                    x.parent.color = Color.RED;
+                    RightRotate(x.parent);
+                    w = x.parent.left;
+                }
+                if (w.right.color == Color.BLACK && w.left.color == Color.BLACK) {
+                    w.color = Color.RED;
+                    x = x.parent;
+                } else {
+                    if (w.left.color == Color.BLACK) {
+                        w.right.color = Color.BLACK;
+                        w.color = Color.RED;
+                        LeftRotate(w);
+                        w = x.parent.left;
+                    }
+                    w.color = x.parent.color;
+                    x.parent.color = Color.BLACK;
+                    w.left.color = Color.BLACK;
+                    RightRotate(x.parent);
+                    x = root;
+                }
+            }
+        }
+        x.color = Color.BLACK;
+    }
     private void printHelper(RBTNode node, String indent, boolean last) {
         if (node != T_nil) {
             System.out.print(indent);

@@ -25,6 +25,66 @@ public class BinarySearchTree {
         return root ;
 
     }
+    public boolean delete(int v){
+        if(!contains(v)){
+            return false ;
+        }
+       root = deleteRec(root , v);
+        return true ;
+    }
+    public BSTNode deleteRec(BSTNode root , int v){
+        if(v < root.value){
+            root.left = deleteRec(root.left , v) ;
+        }
+        else if(v > root.value){
+            root.right = deleteRec(root.right , v) ;
+        }
+        else {
+            if(root.left == null){
+                return root.right ;
+            }
+            if(root.right == null){
+                return  root.left ;
+            }
+            BSTNode successor = specialGetSuccessor(root.right) ;
+            root.value =  successor.value ;
+
+           root.right = deleteRec(root.right ,successor.value) ;
+        }
+        return root ;
+
+    }
+    public BSTNode specialGetSuccessor(BSTNode node){
+        while (node != null && node.left != null ){
+            node = node.left ;
+        }
+        return  node ;
+    }
+    public void printTree() {
+        if (root == null) {
+            System.out.println("Tree is empty.");
+            return;
+        }
+        System.out.println(root.value); 
+        printHelper(root.left, "", false);
+        printHelper(root.right, "", true);
+    }
+
+    private void printHelper(BSTNode node, String indent, boolean last) {
+        if (node != null) {
+            System.out.print(indent);
+            if (last) {
+                System.out.print("R----");
+                indent += "   ";
+            } else {
+                System.out.print("L----");
+                indent += "|  ";
+            }
+            System.out.println(node.value);
+            printHelper(node.left, indent, false);
+            printHelper(node.right, indent, true);
+        }
+    }
     public boolean contains(int v ){
         BSTNode current = root ;
         while (current != null){

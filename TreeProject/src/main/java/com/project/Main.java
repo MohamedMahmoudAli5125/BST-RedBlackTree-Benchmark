@@ -11,36 +11,49 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\n1. Insert to BST\n2. Insert to RBT\n3. View RBT Structure\n4. Exit");
+            System.out.println("\n--- Tree Operations ---");
+            System.out.println("1. Insert to BST   2. Delete from BST   3. View BST");
+            System.out.println("4. Insert to RBT   5. Delete from RBT   6. View RBT");
+            System.out.println("7. Exit");
             System.out.print("Choice: ");
+
             int choice = scanner.nextInt();
 
-            if (choice == 4) {
-                break;
-            }
+            if (choice == 7) break;
 
             if (choice == 3) {
-                System.out.println("Current Red-Black Tree Structure:");
+                System.out.println("\nBinary Search Tree Structure:");
+                bst.printTree();
+                continue;
+            }
+            if (choice == 6) {
+                System.out.println("\nRed-Black Tree Structure:");
                 rbt.printTree();
                 continue;
             }
+
             System.out.print("Enter value: ");
             int val = scanner.nextInt();
 
-            if (choice == 1) {
-                boolean added = bst.insert(val);
-                if (added) {
-                    System.out.println(val + " added to BST");
-                } else {
-                    System.out.println(val + " exists in BST");
-                }
-            } else if (choice == 2) {
-                boolean added = rbt.insert(val);
-                if (added) {
-                    System.out.println(val + " added to RBT");
-                } else {
-                    System.out.println(val + " exists in RBT");
-                }
+            switch (choice) {
+                case 1:
+                    if (bst.insert(val)) System.out.println(val + " inserted into BST.");
+                    else System.out.println(val + " already exists in BST.");
+                    break;
+                case 2:
+                    if (bst.delete(val)) System.out.println(val + " deleted from BST.");
+                    else System.out.println(val + " not found in BST.");
+                    break;
+                case 4:
+                    if (rbt.insert(val)) System.out.println(val + " inserted into RBT.");
+                    else System.out.println(val + " already exists in RBT.");
+                    break;
+                case 5:
+                    if (rbt.delete(val)) System.out.println(val + " deleted from RBT.");
+                    else System.out.println(val + " not found in RBT.");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
             }
         }
         System.out.println("Program terminated.");
