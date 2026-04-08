@@ -1,6 +1,8 @@
 package com.project.rbtree;
 
-public class RedBlackTree {
+import com.project.ITree;
+
+public class RedBlackTree implements ITree {
     private final RBTNode T_nil;
     private RBTNode root;
     private int count = 0;

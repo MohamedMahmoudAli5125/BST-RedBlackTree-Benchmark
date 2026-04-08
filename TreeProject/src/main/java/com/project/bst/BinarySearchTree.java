@@ -1,6 +1,8 @@
 package com.project.bst;
 
-public class BinarySearchTree {
+import com.project.ITree;
+
+public class BinarySearchTree implements ITree {
     private BSTNode root;
     private int count = 0;
 
