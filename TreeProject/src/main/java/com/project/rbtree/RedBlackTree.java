@@ -6,6 +6,7 @@ public class RedBlackTree implements ITree {
     private final RBTNode T_nil;
     private RBTNode root;
     private int count = 0;
+    static final boolean VALIDATE = false;
 
     public RedBlackTree() {
         T_nil = new RBTNode(0);
@@ -34,6 +35,7 @@ public class RedBlackTree implements ITree {
         }
         insertFixup(z);
         count++;
+        if (VALIDATE) RBTValidator.check(root, T_nil, count);
         return true;
     }
 
@@ -171,6 +173,7 @@ public class RedBlackTree implements ITree {
             deleteFixup(x);
         }
         count--;
+        if (VALIDATE) RBTValidator.check(root, T_nil, count);
         return true;
     }
 
@@ -284,6 +287,15 @@ public class RedBlackTree implements ITree {
     public int size() {
         return this.count;
     }
+
+    public RBTNode getRoot() {
+        return root;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
     public int height(){
         return heightRec(root);
     }
@@ -292,5 +304,9 @@ public class RedBlackTree implements ITree {
             return  -1 ;
         }
         return 1 +  Math.max(heightRec(node.left) , heightRec(node.right));
+    }
+
+    public RBTNode getT_nil() {
+        return T_nil;
     }
 }

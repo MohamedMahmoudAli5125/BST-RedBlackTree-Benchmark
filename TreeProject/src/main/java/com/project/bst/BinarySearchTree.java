@@ -2,9 +2,12 @@ package com.project.bst;
 
 import com.project.ITree;
 
+
 public class BinarySearchTree implements ITree {
     private BSTNode root;
     private int count = 0;
+    static final boolean VALIDATE = false;
+
 
     public BinarySearchTree() {
         this.root = null;
@@ -16,6 +19,7 @@ public class BinarySearchTree implements ITree {
         }
         root = insertRec(root, v);
         count++;
+        if (VALIDATE) BSTValidator.check(root, count);
         return true;
     }
 
@@ -38,6 +42,7 @@ public class BinarySearchTree implements ITree {
         }
         root = deleteRec(root, v);
         count--;
+        if (VALIDATE) BSTValidator.check(root, count);
         return true;
     }
 
@@ -133,5 +138,12 @@ public class BinarySearchTree implements ITree {
             return  -1 ;
         }
         return 1 +  Math.max(heightRec(node.left) , heightRec(node.right));
+    }
+    public BSTNode getRoot(){
+        return root;
+    }
+
+    public int getCount() {
+        return count;
     }
 }
