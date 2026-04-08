@@ -11,9 +11,6 @@ public class BenchmarkService {
     private final ArrayGenerator gen = new ArrayGenerator();
     private final Random random = new Random(12345);
     //Duplicates allowed for all operations
-    //==========================================================================
-    // Remainder : merging the insert + inorder Test in the same runBenchmark() method by using the same time of the first operation then run the inorder before contains .
-    //==========================================================================
     public BenchmarkData prepareData(ArrayGenerator.DisorderLevel level, String name) {
         BenchmarkData data = new BenchmarkData(name);
 
@@ -45,63 +42,68 @@ public class BenchmarkService {
         return data;
     }
 
-    public void runBenchmark(ITree tree, BenchmarkData data) {
-        System.out.println("\n>> Benchmarking " + tree.getClass().getSimpleName() + " [" + data.name + "]");
-
-        // INSERTION
-        long start = System.nanoTime();
-        for (int val : data.insertData) {
-            tree.insert(val);
-        }
-        long end = System.nanoTime();
-        System.out.printf("Insert:   %.2f ms | Height: %d\n",
-                (end - start) / 1_000_000.0, tree.height());
-        
-        // CONTAINS
-        start = System.nanoTime();
-        for (int val : data.containsData) {
-            tree.contains(val);
-        }
-        end = System.nanoTime();
-        System.out.printf("Contains: %.2f ms\n", (end - start) / 1_000_000.0);
-
-        // DELETE
-        start = System.nanoTime();
-        for (int val : data.deleteData) {
-            tree.delete(val);
-        }
-        end = System.nanoTime();
-        System.out.printf("Delete:   %.2f ms\n", (end - start) / 1_000_000.0);
-    }
+//    public void runBenchmark(ITree tree, BenchmarkData data) {
+//        System.out.println("\n>> Benchmarking " + tree.getClass().getSimpleName() + " [" + data.name + "]");
+//
+//        // INSERTION
+//        long start = System.nanoTime();
+//        for (int val : data.insertData) {
+//            tree.insert(val);
+//        }
+//        long end = System.nanoTime();
+//        System.out.printf("Insert:   %.2f ms | Height: %d\n",
+//                (end - start) / 1_000_000.0, tree.height());
+//
+//        // CONTAINS
+//        start = System.nanoTime();
+//        for (int val : data.containsData) {
+//            tree.contains(val);
+//        }
+//        end = System.nanoTime();
+//        System.out.printf("Contains: %.2f ms\n", (end - start) / 1_000_000.0);
+//
+//        // DELETE
+//        start = System.nanoTime();
+//        for (int val : data.deleteData) {
+//            tree.delete(val);
+//        }
+//        end = System.nanoTime();
+//        System.out.printf("Delete:   %.2f ms\n", (end - start) / 1_000_000.0);
+//    }
 
     // Operation 4: Sorting Benchmark (Build + InOrder) , To be merged isA
-    public void runSortingBenchmark(ITree tree, int[] insertData) {
-        long start = System.nanoTime();
-        for (int val : insertData) tree.insert(val);
-        tree.inOrder();
-        long end = System.nanoTime();
-        System.out.printf("Tree Sort Total: %.2f ms\n", (end - start) / 1_000_000.0);
-    }
+//    public void runSortingBenchmark(ITree tree, int[] insertData) {
+//        long start = System.nanoTime();
+//        for (int val : insertData) tree.insert(val);
+//        tree.inOrder();
+//        long end = System.nanoTime();
+//        System.out.printf("Tree Sort Total: %.2f ms\n", (end - start) / 1_000_000.0);
+//    }
     public static void main(String[] args) {
-            BenchmarkService service = new BenchmarkService();
+        BenchmarkService service = new BenchmarkService();
+        BenchmarkCollecter collector = new BenchmarkCollecter();
 
-            Object[][] testCases = {
-                    {null, "Random"},
-//                    {ArrayGenerator.DisorderLevel.SORTED, "Sorted"}, // ERROR : StackOverflowError
-                    {ArrayGenerator.DisorderLevel.ONE_PERCENT, "1% Disorder"},
-                    {ArrayGenerator.DisorderLevel.FIVE_PERCENT, "5% Disorder"},
-                    {ArrayGenerator.DisorderLevel.TEN_PERCENT, "10% Disorder"}
-            };
+        Object[][] testCases = {
+                {null, "Random"},
+//              {ArrayGenerator.DisorderLevel.SORTED, "Sorted"}, // ERROR : StackOverflowError
+                {ArrayGenerator.DisorderLevel.ONE_PERCENT, "1% Disorder"},
+                {ArrayGenerator.DisorderLevel.FIVE_PERCENT, "5% Disorder"},
+                {ArrayGenerator.DisorderLevel.TEN_PERCENT, "10% Disorder"}
+        };
 
-            for (Object[] testCase : testCases) {
-                ArrayGenerator.DisorderLevel level = (ArrayGenerator.DisorderLevel) testCase[0];
-                String name = (String) testCase[1];
+        for (Object[] testCase : testCases) {
+            BenchmarkData data = service.prepareData((ArrayGenerator.DisorderLevel) testCase[0], (String) testCase[1]);
 
-                BenchmarkData data = service.prepareData(level, name);
-                service.runBenchmark(new BinarySearchTree(), data);
-                service.runBenchmark(new RedBlackTree(), data);
+            System.gc();
+           Stats bstStats = collector.collect("BST", new BinarySearchTree(), data);
+           Stats rbtStats = collector.collect("RBT", new RedBlackTree(), data);
+            System.out.println("\n--- Speedup (BST / RBT) ---");
 
-            }
+            System.out.printf("Insert: %.2fx\n", bstStats.insertMean / rbtStats.insertMean);
+            System.out.printf("Search: %.2fx\n", bstStats.searchMean / rbtStats.searchMean);
+            System.out.printf("Delete: %.2fx\n", bstStats.deleteMean / rbtStats.deleteMean);
+            System.out.printf("Sort:   %.2fx\n", bstStats.sortMean / rbtStats.sortMean);
         }
+    }
 
 }
