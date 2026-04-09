@@ -6,13 +6,8 @@ import org.slf4j.LoggerFactory;
 
 
 public class BinarySearchTree implements ITree {
-    private BSTNode root;
-    private int count = 0;
     static final boolean DEFAULT_VALIDATE  = false;
     private final boolean validate;
-    private static final Logger logger = LoggerFactory.getLogger(BinarySearchTree.class);
-
-
     public BinarySearchTree() {
         this(DEFAULT_VALIDATE);
     }
@@ -25,7 +20,10 @@ public class BinarySearchTree implements ITree {
             logger.debug("BinarySearchTree initialized with validation disabled");
         }
     }
+    private BSTNode root;
+    private int count = 0;
 
+    private static final Logger logger = LoggerFactory.getLogger(BinarySearchTree.class);
 
     public boolean insert(int v) {
         logger.debug("Attempting to insert value: {}", v);
@@ -165,7 +163,7 @@ public class BinarySearchTree implements ITree {
     }
     public int heightRec(BSTNode node){
         if(node == null){
-            return  -1 ;
+            return  0 ;
         }
         return 1 +  Math.max(heightRec(node.left) , heightRec(node.right));
     }

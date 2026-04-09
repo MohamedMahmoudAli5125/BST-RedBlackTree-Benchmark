@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.project.rbtree.RedBlackTreeTest
 -------------------------------------------------------------------------------
-Tests run: 31, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.103 s -- in com.project.rbtree.RedBlackTreeTest
+Tests run: 31, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.442 s -- in com.project.rbtree.RedBlackTreeTest

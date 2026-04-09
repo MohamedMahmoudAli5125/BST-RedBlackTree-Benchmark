@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("BinarySearchTree Tests")
 public class BinarySearchTreeTest {
 
-    // VALIDATE must be true when running tests, false during benchmarking
-    static final boolean VALIDATE = true;
 
     private BinarySearchTree bst;
 
     @BeforeEach
     void setUp() {
-        bst = new BinarySearchTree();
+        // VALIDATE must be true when running tests, false during benchmarking
+
+        bst = new BinarySearchTree(true);
     }
 
     // 1. Insert
@@ -22,7 +22,6 @@ public class BinarySearchTreeTest {
     @DisplayName("Insert into empty tree returns true")
     void testInsertIntoEmptyTree() {
         assertTrue(bst.insert(10));
-        if (VALIDATE) BSTValidator.check(bst.getRoot(), bst.size());
     }
 
     @Test
@@ -31,7 +30,6 @@ public class BinarySearchTreeTest {
         bst.insert(10);
         assertFalse(bst.insert(10));
         assertEquals(1, bst.size());
-        if (VALIDATE) BSTValidator.check(bst.getRoot(), bst.size());
     }
 
     @Test
@@ -40,7 +38,6 @@ public class BinarySearchTreeTest {
         int[] values = {5, 3, 7, 1, 4, 6, 8};
         for (int v : values) assertTrue(bst.insert(v));
         assertEquals(values.length, bst.size());
-        if (VALIDATE) BSTValidator.check(bst.getRoot(), bst.size());
     }
 
     @Test
@@ -49,7 +46,6 @@ public class BinarySearchTreeTest {
         for (int i = 1; i <= 100; i++) bst.insert(i);
         assertEquals(100, bst.size());
         assertEquals(99, bst.height()); // fully right-skewed
-        if (VALIDATE) BSTValidator.check(bst.getRoot(), bst.size());
     }
 
     @Test
@@ -58,7 +54,6 @@ public class BinarySearchTreeTest {
         for (int i = 100; i >= 1; i--) bst.insert(i);
         assertEquals(100, bst.size());
         assertEquals(99, bst.height()); // fully left-skewed
-        if (VALIDATE) BSTValidator.check(bst.getRoot(), bst.size());
     }
 
     // 2. Contains
@@ -111,7 +106,6 @@ public class BinarySearchTreeTest {
         assertTrue(bst.delete(5));
         assertFalse(bst.contains(5));
         assertEquals(2, bst.size());
-        if (VALIDATE) BSTValidator.check(bst.getRoot(), bst.size());
     }
 
     @Test
@@ -124,7 +118,6 @@ public class BinarySearchTreeTest {
         assertFalse(bst.contains(5));
         assertTrue(bst.contains(3));
         assertEquals(2, bst.size());
-        if (VALIDATE) BSTValidator.check(bst.getRoot(), bst.size());
     }
 
     @Test
@@ -140,7 +133,6 @@ public class BinarySearchTreeTest {
         assertTrue(bst.contains(3));
         assertTrue(bst.contains(7));
         assertEquals(4, bst.size());
-        if (VALIDATE) BSTValidator.check(bst.getRoot(), bst.size());
     }
 
     @Test
@@ -150,7 +142,6 @@ public class BinarySearchTreeTest {
         assertTrue(bst.delete(10));
         assertFalse(bst.contains(10));
         assertEquals(0, bst.size());
-        if (VALIDATE) BSTValidator.check(bst.getRoot(), bst.size());
     }
 
     @Test
@@ -169,7 +160,6 @@ public class BinarySearchTreeTest {
         for (int v : values) bst.insert(v);
         for (int v : values) {
             assertTrue(bst.delete(v));
-            if (VALIDATE) BSTValidator.check(bst.getRoot(), bst.size());
         }
         assertEquals(0, bst.size());
     }
@@ -280,7 +270,6 @@ public class BinarySearchTreeTest {
             bst.insert(v);
             inserted.add(v);
         }
-        if (VALIDATE) BSTValidator.check(bst.getRoot(), bst.size());
 
         // Delete ~half
         java.util.List<Integer> list = new java.util.ArrayList<>(inserted);
@@ -288,6 +277,5 @@ public class BinarySearchTreeTest {
         for (int i = 0; i < list.size() / 2; i++) {
             bst.delete(list.get(i));
         }
-        if (VALIDATE) BSTValidator.check(bst.getRoot(), bst.size());
     }
 }

@@ -6,6 +6,7 @@ import com.project.rbtree.RedBlackTree;
 
 public class BenchmarkCollecter {
     private final TreeRunner runner = new TreeRunner();
+    private final TreeRunner sortOnlyRunner = new TreeRunner(true);
     private static final int MIN_RUNS = 5;
     private static final int DEFAULT_RUNS = 5;
     private final int runs;
@@ -47,13 +48,49 @@ public class BenchmarkCollecter {
 
         Stats stats = new Stats();
 
+        stats.height = InitialHeight;
+
         stats.insertMean = BenchmarkStats.getMean(iTimes);
+        stats.insertMedian = BenchmarkStats.getMedian(iTimes);
+        stats.insertStdDev = BenchmarkStats.getStdDev(iTimes);
+
         stats.searchMean = BenchmarkStats.getMean(sTimes);
+        stats.searchMedian = BenchmarkStats.getMedian(sTimes);
+        stats.searchStdDev = BenchmarkStats.getStdDev(sTimes);
+
         stats.deleteMean = BenchmarkStats.getMean(dTimes);
+        stats.deleteMedian = BenchmarkStats.getMedian(dTimes);
+        stats.deleteStdDev = BenchmarkStats.getStdDev(dTimes);
+
         stats.sortMean = BenchmarkStats.getMean(sortTimes);
+        stats.sortMedian = BenchmarkStats.getMedian(sortTimes);
+        stats.sortStdDev = BenchmarkStats.getStdDev(sortTimes);
+
         return stats ;
     }
+    public Stats collectSortOnly(String label, ITree treePrototype, BenchmarkData data) {
+        double[] sortTimes = new double[runs];
+        int initialHeight = 0;
 
+        // JVM warmup
+        sortOnlyRunner.runSinglePass(createNewInstance(treePrototype), data);
+
+        for (int i = 0; i < runs; i++) {
+            BenchmarkResult res = sortOnlyRunner.runSinglePass(createNewInstance(treePrototype), data);
+            sortTimes[i] = res.sortTime;
+            initialHeight = res.height;
+        }
+
+        printReport(label, "Sort   ", sortTimes, initialHeight);
+
+        Stats stats = new Stats();
+        stats.height = initialHeight;
+        stats.sortMean = BenchmarkStats.getMean(sortTimes);
+        stats.sortMedian = BenchmarkStats.getMedian(sortTimes);
+        stats.sortStdDev = BenchmarkStats.getStdDev(sortTimes);
+
+        return stats;
+    }
     private void printReport(String tree, String op, double[] times, int height) {
         String hStr = (height != -1) ? "| Height: " + height : "";
         System.out.printf("[%s %s] Mean: %.4f ms | Median: %.4f ms | StdDev: %.4f ms %s\n",

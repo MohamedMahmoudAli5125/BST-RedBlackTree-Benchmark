@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.project.bst.BinarySearchTreeTest" time="0.777" tests="27" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.project.bst.BinarySearchTreeTest" time="1.419" tests="27" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Users\Mega Store\.gradle\jdks\eclipse_adoptium-21-amd64-windows\jdk-21.0.9+10\bin"/>
-    <property name="sun.java.command" value="C:\Users\Mega Store\AppData\Local\Temp\surefire17637804543128790772\surefirebooter-20260409040634268_3.jar C:\Users\Mega Store\AppData\Local\Temp\surefire17637804543128790772 2026-04-09T04-06-33_813-jvmRun1 surefire-20260409040634268_1tmp surefire_0-20260409040634268_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Mega Store\AppData\Local\Temp\surefire8112869832983450158\surefirebooter-20260409214651511_3.jar C:\Users\Mega Store\AppData\Local\Temp\surefire8112869832983450158 2026-04-09T21-46-51_136-jvmRun1 surefire-20260409214651511_1tmp surefire_0-20260409214651511_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\sheets_labsreports\DSA\Assignment 2\BST-RedBlackTree-Benchmark\TreeProject\target\test-classes;D:\sheets_labsreports\DSA\Assignment 2\BST-RedBlackTree-Benchmark\TreeProject\target\classes;C:\Users\Mega Store\.m2\repository\org\slf4j\slf4j-api\2.0.7\slf4j-api-2.0.7.jar;C:\Users\Mega Store\.m2\repository\ch\qos\logback\logback-classic\1.4.7\logback-classic-1.4.7.jar;C:\Users\Mega Store\.m2\repository\ch\qos\logback\logback-core\1.4.7\logback-core-1.4.7.jar;C:\Users\Mega Store\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\Mega Store\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\Mega Store\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Mega Store\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\Mega Store\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Mega Store\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\Mega Store\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\Mega Store\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Mega Store\AppData\Local\Temp\surefire17637804543128790772\surefirebooter-20260409040634268_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Mega Store\AppData\Local\Temp\surefire8112869832983450158\surefirebooter-20260409214651511_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.9+10-LTS"/>
@@ -55,7 +55,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Users\Mega Store\.gradle\jdks\eclipse_adoptium-21-amd64-windows\jdk-21.0.9+10\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Python314\Scripts\;C:\Python314\;D:\programs\jdk-17.0.12\bin;C:\Program Files\dotnet\;C:\Program Files\Fortect;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Users\Mega Store\AppData\Local\Programs\Python\Python313\Scripts\;C:\Users\Mega Store\AppData\Local\Programs\Python\Python313\;C:\Users\Mega Store\AppData\Local\Programs\Python\Launcher\;C:\Users\Mega Store\AppData\Local\Microsoft\WindowsApps;C:\Users\Mega Store\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Mega Store\AppData\Local\spicetify;D:\modelsim_ase\win32aloem;D:\programs\bin;C:\Program Files\Java\jre1.8.0_251\bin;D:\programs\jdk-17.0.12\bin;C:\msys64\ucrt64\bin;C:\Users\Mega Store\AppData\Local\Microsoft\WindowsApps;C:\Users\Mega Store\AppData\Roaming\npm;D:\programs\jdk-17.0.12\bin;C:\Users\Mega Store\AppData\Local\GitHubDesktop\bin;."/>
+    <property name="java.library.path" value="C:\Users\Mega Store\.gradle\jdks\eclipse_adoptium-21-amd64-windows\jdk-21.0.9+10\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Python314\Scripts\;C:\Python314\;D:\programs\jdk-17.0.12\bin;C:\Program Files\dotnet\;C:\Program Files\Fortect;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Users\Mega Store\AppData\Local\Programs\Python\Python313\Scripts\;C:\Users\Mega Store\AppData\Local\Programs\Python\Python313\;C:\Users\Mega Store\AppData\Local\Programs\Python\Launcher\;C:\Users\Mega Store\AppData\Local\Microsoft\WindowsApps;C:\Users\Mega Store\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Mega Store\AppData\Local\spicetify;D:\modelsim_ase\win32aloem;D:\programs\bin;C:\Program Files\Java\jre1.8.0_251\bin;D:\programs\jdk-17.0.12\bin;C:\msys64\ucrt64\bin;C:\Users\Mega Store\AppData\Local\Microsoft\WindowsApps;C:\Users\Mega Store\AppData\Roaming\npm;D:\programs\jdk-17.0.12\bin;C:\Users\Mega Store\AppData\Local\GitHubDesktop\bin;D:\programs\cursor\resources\app\bin;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="stderr.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Eclipse Adoptium"/>
@@ -64,31 +64,31 @@
     <property name="maven.repo.local" value="C:\Users\Mega Store\.m2\repository"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testInsertAscending" classname="com.project.bst.BinarySearchTreeTest" time="0.524"/>
-  <testcase name="testDeleteAllElements" classname="com.project.bst.BinarySearchTreeTest" time="0.003"/>
-  <testcase name="testSizeUnchangedOnNoOp" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
-  <testcase name="testDeleteAbsentValue" classname="com.project.bst.BinarySearchTreeTest" time="0.003"/>
-  <testcase name="testInsertDescending" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
-  <testcase name="testHeightEmpty" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
-  <testcase name="testHeightBalanced" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
+  <testcase name="testInsertAscending" classname="com.project.bst.BinarySearchTreeTest" time="1.049"/>
+  <testcase name="testDeleteAllElements" classname="com.project.bst.BinarySearchTreeTest" time="0.004"/>
+  <testcase name="testSizeUnchangedOnNoOp" classname="com.project.bst.BinarySearchTreeTest" time="0.002"/>
+  <testcase name="testDeleteAbsentValue" classname="com.project.bst.BinarySearchTreeTest" time="0.005"/>
+  <testcase name="testInsertDescending" classname="com.project.bst.BinarySearchTreeTest" time="0.003"/>
+  <testcase name="testHeightEmpty" classname="com.project.bst.BinarySearchTreeTest" time="0.002"/>
+  <testcase name="testHeightBalanced" classname="com.project.bst.BinarySearchTreeTest" time="0.002"/>
   <testcase name="testDeleteOnlyElement" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
   <testcase name="testDeleteFromEmptyTree" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
-  <testcase name="testHeightSingleNode" classname="com.project.bst.BinarySearchTreeTest" time="0.0"/>
-  <testcase name="testInsertDuplicate" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
+  <testcase name="testHeightSingleNode" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
+  <testcase name="testInsertDuplicate" classname="com.project.bst.BinarySearchTreeTest" time="0.002"/>
   <testcase name="testInsertIntoEmptyTree" classname="com.project.bst.BinarySearchTreeTest" time="0.002"/>
-  <testcase name="testSizeUpdates" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
+  <testcase name="testSizeUpdates" classname="com.project.bst.BinarySearchTreeTest" time="0.002"/>
   <testcase name="testContainsOnEmptyTree" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
-  <testcase name="testStructuralValidityUnderStress" classname="com.project.bst.BinarySearchTreeTest" time="0.007"/>
-  <testcase name="testInOrderEmpty" classname="com.project.bst.BinarySearchTreeTest" time="0.03"/>
+  <testcase name="testStructuralValidityUnderStress" classname="com.project.bst.BinarySearchTreeTest" time="0.02"/>
+  <testcase name="testInOrderEmpty" classname="com.project.bst.BinarySearchTreeTest" time="0.036"/>
   <testcase name="testInOrderAfterDeletions" classname="com.project.bst.BinarySearchTreeTest" time="0.002"/>
   <testcase name="testInOrderSingleElement" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
-  <testcase name="testContainsPresentValues" classname="com.project.bst.BinarySearchTreeTest" time="0.009"/>
+  <testcase name="testContainsPresentValues" classname="com.project.bst.BinarySearchTreeTest" time="0.007"/>
   <testcase name="testInsertMultiple" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
   <testcase name="testDeleteNodeWithTwoChildren" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
   <testcase name="testDeleteLeaf" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
-  <testcase name="testDeleteRoot" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
-  <testcase name="testContainsAbsentValues" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
-  <testcase name="testInOrderSorted" classname="com.project.bst.BinarySearchTreeTest" time="0.026"/>
-  <testcase name="testDeleteNodeWithOneChild" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
-  <testcase name="testSizeInitial" classname="com.project.bst.BinarySearchTreeTest" time="0.001"/>
+  <testcase name="testDeleteRoot" classname="com.project.bst.BinarySearchTreeTest" time="0.002"/>
+  <testcase name="testContainsAbsentValues" classname="com.project.bst.BinarySearchTreeTest" time="0.007"/>
+  <testcase name="testInOrderSorted" classname="com.project.bst.BinarySearchTreeTest" time="0.029"/>
+  <testcase name="testDeleteNodeWithOneChild" classname="com.project.bst.BinarySearchTreeTest" time="0.005"/>
+  <testcase name="testSizeInitial" classname="com.project.bst.BinarySearchTreeTest" time="0.005"/>
 </testsuite>

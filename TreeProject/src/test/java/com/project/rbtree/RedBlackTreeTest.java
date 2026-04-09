@@ -6,14 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("RedBlackTree Tests")
 public class RedBlackTreeTest {
 
-    // VALIDATE must be true when running tests, false during benchmarking
-    static final boolean VALIDATE = true;
 
     private RedBlackTree rbt;
 
     @BeforeEach
     void setUp() {
-        rbt = new RedBlackTree();
+        // VALIDATE must be true when running tests, false during benchmarking
+        rbt = new RedBlackTree(true);
     }
 
     // 1. Insert
@@ -22,7 +21,6 @@ public class RedBlackTreeTest {
     @DisplayName("Insert into empty tree returns true")
     void testInsertIntoEmptyTree() {
         assertTrue(rbt.insert(10));
-        if (VALIDATE) RBTValidator.check(rbt.getRoot(), rbt.getT_nil(), rbt.size());
     }
 
     @Test
@@ -31,7 +29,6 @@ public class RedBlackTreeTest {
         rbt.insert(10);
         assertFalse(rbt.insert(10));
         assertEquals(1, rbt.size());
-        if (VALIDATE) RBTValidator.check(rbt.getRoot(), rbt.getT_nil(), rbt.size());
     }
 
     @Test
@@ -40,7 +37,6 @@ public class RedBlackTreeTest {
         int[] values = {5, 3, 7, 1, 4, 6, 8};
         for (int v : values) assertTrue(rbt.insert(v));
         assertEquals(values.length, rbt.size());
-        if (VALIDATE) RBTValidator.check(rbt.getRoot(), rbt.getT_nil(), rbt.size());
     }
 
     @Test
@@ -51,7 +47,6 @@ public class RedBlackTreeTest {
         // RBT guarantees height <= 2*log2(n+1); for n=100 that is ~13
         assertTrue(rbt.height() <= 14,
                 "Height " + rbt.height() + " exceeds RBT upper bound for 100 nodes");
-        if (VALIDATE) RBTValidator.check(rbt.getRoot(), rbt.getT_nil(), rbt.size());
     }
 
     @Test
@@ -61,7 +56,6 @@ public class RedBlackTreeTest {
         assertEquals(100, rbt.size());
         assertTrue(rbt.height() <= 14,
                 "Height " + rbt.height() + " exceeds RBT upper bound for 100 nodes");
-        if (VALIDATE) RBTValidator.check(rbt.getRoot(), rbt.getT_nil(), rbt.size());
     }
 
     @Test
@@ -125,7 +119,6 @@ public class RedBlackTreeTest {
         assertTrue(rbt.delete(5));
         assertFalse(rbt.contains(5));
         assertEquals(2, rbt.size());
-        if (VALIDATE) RBTValidator.check(rbt.getRoot(), rbt.getT_nil(), rbt.size());
     }
 
     @Test
@@ -135,7 +128,6 @@ public class RedBlackTreeTest {
         for (int v : new int[]{10, 5, 15, 3, 7, 12, 20}) rbt.insert(v);
         assertTrue(rbt.delete(3)); // likely BLACK — forces rebalancing
         assertFalse(rbt.contains(3));
-        if (VALIDATE) RBTValidator.check(rbt.getRoot(), rbt.getT_nil(), rbt.size());
     }
 
     @Test
@@ -163,7 +155,6 @@ public class RedBlackTreeTest {
         assertTrue(rbt.delete(10)); // root has two children
         assertFalse(rbt.contains(10));
         assertEquals(6, rbt.size());
-        if (VALIDATE) RBTValidator.check(rbt.getRoot(), rbt.getT_nil(), rbt.size());
     }
 
     @Test
@@ -187,7 +178,6 @@ public class RedBlackTreeTest {
         for (int v : values) rbt.insert(v);
         for (int v : values) {
             assertTrue(rbt.delete(v));
-            if (VALIDATE) RBTValidator.check(rbt.getRoot(), rbt.getT_nil(), rbt.size());
         }
         assertEquals(0, rbt.size());
     }
@@ -294,7 +284,6 @@ public class RedBlackTreeTest {
     void testStructuralValidityAfterInserts() {
         java.util.Random rng = new java.util.Random(42L);
         for (int i = 0; i < 1000; i++) rbt.insert(rng.nextInt(2000));
-        if (VALIDATE) RBTValidator.check(rbt.getRoot(), rbt.getT_nil(), rbt.size());
     }
 
     @Test
@@ -312,7 +301,6 @@ public class RedBlackTreeTest {
         java.util.Collections.shuffle(list, rng);
         for (int i = 0; i < list.size() / 2; i++) rbt.delete(list.get(i));
 
-        if (VALIDATE) RBTValidator.check(rbt.getRoot(), rbt.getT_nil(), rbt.size());
     }
 
     @Test
@@ -329,7 +317,6 @@ public class RedBlackTreeTest {
                 int v = rng.nextInt(500);
                 if (rbt.insert(v)) present.add(v);
             }
-            if (VALIDATE) RBTValidator.check(rbt.getRoot(), rbt.getT_nil(), rbt.size());
         }
     }
 }

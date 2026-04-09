@@ -369,7 +369,7 @@ public class RedBlackTree implements ITree {
     }
     public int heightRec(RBTNode node){
         if(node == T_nil){
-            return  -1 ;
+            return  0 ;
         }
         return 1 +  Math.max(heightRec(node.left) , heightRec(node.right));
     }
