@@ -1,12 +1,16 @@
 package com.project.bst;
 
 import com.project.ITree;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class BinarySearchTree implements ITree {
     private BSTNode root;
     private int count = 0;
     static final boolean VALIDATE = false;
+    private static final Logger logger = LoggerFactory.getLogger(BinarySearchTree.class);
+
 
 
     public BinarySearchTree() {
@@ -14,11 +18,14 @@ public class BinarySearchTree implements ITree {
     }
 
     public boolean insert(int v) {
+        logger.debug("Attempting to insert value: {}", v);
         if (contains(v)) {
+            logger.debug("Insert skipped — duplicate value: {}", v);
             return false;
         }
         root = insertRec(root, v);
         count++;
+        logger.debug("Inserted value: {}, new size: {}", v, count);
         if (VALIDATE) BSTValidator.check(root, count);
         return true;
     }
@@ -37,11 +44,14 @@ public class BinarySearchTree implements ITree {
     }
 
     public boolean delete(int v) {
+        logger.debug("Attempting to delete value: {}", v);
         if (!contains(v)) {
+            logger.debug("Delete skipped — value not found: {}", v);
             return false;
         }
         root = deleteRec(root, v);
         count--;
+        logger.debug("Deleted value: {}, new size: {}", v, count);
         if (VALIDATE) BSTValidator.check(root, count);
         return true;
     }
@@ -101,20 +111,27 @@ public class BinarySearchTree implements ITree {
     }
 
     public boolean contains(int v) {
+        logger.debug("Checking if tree contains value: {}", v);
+        int steps = 0;
         BSTNode current = root;
         while (current != null) {
+            steps++ ;
             if (v == current.value) {
+                logger.debug("Found value {} after {} comparisons", v, steps);
                 return true;
             }
             current = (v < current.value) ? current.left : current.right;
         }
+        logger.debug("Value {} not found in tree after {} comparisons", v, steps);
         return false;
     }
 
     public int[] inOrder() {
+        logger.debug("Getting in-order traversal of tree");
         int[] result = new int[this.size()];
         int[] counter = {0};
         inOrderRec(root, result, counter);
+        logger.debug("In-order traversal completed, tree size: {}", result.length);
         return result;
     }
 
@@ -128,10 +145,13 @@ public class BinarySearchTree implements ITree {
     }
 
     public int size() {
+        logger.debug("Tree size requested: {}", this.count);
         return this.count;
     }
     public int height(){
-        return heightRec(root);
+        int height = heightRec(root);
+        logger.debug("Tree height calculated: {}", height);
+        return height;
     }
     public int heightRec(BSTNode node){
         if(node == null){
