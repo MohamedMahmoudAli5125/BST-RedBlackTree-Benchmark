@@ -8,12 +8,22 @@ public class RedBlackTree implements ITree {
     private final RBTNode T_nil;
     private RBTNode root;
     private int count = 0;
-    static final boolean VALIDATE = false;
+    static final boolean DEFAULT_VALIDATE = false;
+    private final boolean validate;
     private static final Logger logger = LoggerFactory.getLogger(RedBlackTree.class);
     public RedBlackTree() {
+        this(DEFAULT_VALIDATE);
+    }
+    public RedBlackTree(boolean validate) {
         T_nil = new RBTNode(0);
         T_nil.color = Color.BLACK;
         root = T_nil;
+        this.validate = validate ;
+        if (validate) {
+            logger.info("BinarySearchTree initialized with validation ENABLED");
+        } else {
+            logger.debug("BinarySearchTree initialized with validation disabled");
+        }
     }
 
     public boolean insert(int v) {
@@ -42,7 +52,7 @@ public class RedBlackTree implements ITree {
         insertFixup(z);
         count++;
         logger.debug("Successfully inserted value: {}, tree size now: {}", v, count);
-        if (VALIDATE) RBTValidator.check(root, T_nil, count);
+        if (validate) RBTValidator.check(root, T_nil, count);
         return true;
     }
 
@@ -213,7 +223,7 @@ public class RedBlackTree implements ITree {
         }
         count--;
         logger.debug("Successfully deleted value: {}, tree size now: {}", v, count);
-        if (VALIDATE) RBTValidator.check(root, T_nil, count);
+        if (validate) RBTValidator.check(root, T_nil, count);
         return true;
     }
 

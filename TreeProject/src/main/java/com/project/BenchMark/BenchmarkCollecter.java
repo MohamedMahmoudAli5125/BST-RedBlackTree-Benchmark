@@ -6,19 +6,32 @@ import com.project.rbtree.RedBlackTree;
 
 public class BenchmarkCollecter {
     private final TreeRunner runner = new TreeRunner();
-    private static final int RUNS = 5;
+    private static final int MIN_RUNS = 5;
+    private static final int DEFAULT_RUNS = 5;
+    private final int runs;
 
+    public BenchmarkCollecter() {
+        this(DEFAULT_RUNS);
+    }
+
+    public BenchmarkCollecter(int runs) {
+        if (runs < MIN_RUNS) {
+            throw new IllegalArgumentException("Number of runs must be at least " + MIN_RUNS +
+                    ". Provided: " + runs);
+        }
+        this.runs = runs;
+    }
     public Stats collect(String label, ITree treePrototype, BenchmarkData data) {
-        double[] iTimes = new double[RUNS];
-        double[] sTimes = new double[RUNS];
-        double[] dTimes = new double[RUNS];
-        double[] sortTimes = new double[RUNS];
+        double[] iTimes = new double[runs];
+        double[] sTimes = new double[runs];
+        double[] dTimes = new double[runs];
+        double[] sortTimes = new double[runs];
         int InitialHeight = 0;
 
         // JVM Warmup
         runner.runSinglePass(createNewInstance(treePrototype), data);
 
-        for (int i = 0; i < RUNS; i++) {
+        for (int i = 0; i < runs; i++) {
             BenchmarkResult res = runner.runSinglePass(createNewInstance(treePrototype), data);
             iTimes[i] = res.insertTime;
             sTimes[i] = res.searchTime;
@@ -50,5 +63,8 @@ public class BenchmarkCollecter {
 
     private ITree createNewInstance(ITree prototype) {
         return (prototype instanceof BinarySearchTree) ? new BinarySearchTree() : new RedBlackTree();
+    }
+    public int getRuns() {
+        return runs;
     }
 }

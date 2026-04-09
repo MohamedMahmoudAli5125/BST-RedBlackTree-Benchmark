@@ -8,14 +8,24 @@ import org.slf4j.LoggerFactory;
 public class BinarySearchTree implements ITree {
     private BSTNode root;
     private int count = 0;
-    static final boolean VALIDATE = false;
+    static final boolean DEFAULT_VALIDATE  = false;
+    private final boolean validate;
     private static final Logger logger = LoggerFactory.getLogger(BinarySearchTree.class);
 
 
-
     public BinarySearchTree() {
-        this.root = null;
+        this(DEFAULT_VALIDATE);
     }
+    public BinarySearchTree(boolean validate) {
+        this.root = null;
+        this.validate = validate;
+        if (validate) {
+            logger.info("BinarySearchTree initialized with validation ENABLED");
+        } else {
+            logger.debug("BinarySearchTree initialized with validation disabled");
+        }
+    }
+
 
     public boolean insert(int v) {
         logger.debug("Attempting to insert value: {}", v);
@@ -26,7 +36,7 @@ public class BinarySearchTree implements ITree {
         root = insertRec(root, v);
         count++;
         logger.debug("Inserted value: {}, new size: {}", v, count);
-        if (VALIDATE) BSTValidator.check(root, count);
+        if (validate) BSTValidator.check(root, count);
         return true;
     }
 
@@ -52,7 +62,7 @@ public class BinarySearchTree implements ITree {
         root = deleteRec(root, v);
         count--;
         logger.debug("Deleted value: {}, new size: {}", v, count);
-        if (VALIDATE) BSTValidator.check(root, count);
+        if (validate) BSTValidator.check(root, count);
         return true;
     }
 

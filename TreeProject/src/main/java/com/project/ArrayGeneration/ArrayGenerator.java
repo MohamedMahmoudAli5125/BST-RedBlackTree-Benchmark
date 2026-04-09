@@ -5,8 +5,10 @@ import java.util.Random;
 
 public class ArrayGenerator {
     private static final long DEFAULT_SEED = 12345;
+    private static final int MAX_ARRAY_SIZE = 100000;
     private static final int DEFAULT_ARRAY_SIZE = 100000;
-    private static final int DEFAULT_MAX_VALUE = 1000000;
+    private final int arraySize;
+    private final int maxValue;
     private final Random seededRandom;
 
     public enum DisorderLevel {
@@ -27,26 +29,32 @@ public class ArrayGenerator {
     }
 
     public ArrayGenerator() {
+        this(DEFAULT_ARRAY_SIZE);
+    }
+
+    public ArrayGenerator(int arraySize) {
+        if (arraySize <= 0) {
+            throw new IllegalArgumentException("Array size must be positive");
+        }
+        if (arraySize > MAX_ARRAY_SIZE) {
+            throw new IllegalArgumentException("Array size cannot exceed " + MAX_ARRAY_SIZE);
+        }
+        this.arraySize = arraySize;
+        this.maxValue = 10 * this.arraySize;
         this.seededRandom = new Random(DEFAULT_SEED);
     }
 
     public int[] generateRandom() {
-        int[] arr = new int[DEFAULT_ARRAY_SIZE];
-        for (int i = 0; i < DEFAULT_ARRAY_SIZE; i++) {
-            arr[i] = seededRandom.nextInt(DEFAULT_MAX_VALUE);
+        int[] arr = new int[arraySize];
+        for (int i = 0; i < arraySize; i++) {
+            arr[i] = seededRandom.nextInt(maxValue);
         }
         return arr;
     }
 
-    //public int[] generateNearlySorted(int x){
-//int[] arr= generateRandom() ;
-//Arrays.sort(arr);
-//
-//return  arr ;
-//}
     public int[] generateSorted() {
-        int[] arr = new int[DEFAULT_ARRAY_SIZE];
-        for (int i = 0; i < DEFAULT_ARRAY_SIZE; i++) {
+        int[] arr = new int[arraySize];
+        for (int i = 0; i < arraySize; i++) {
             arr[i] = i;
         }
         return arr;
@@ -54,13 +62,13 @@ public class ArrayGenerator {
 
     public int[] generateNearlySorted(DisorderLevel level) {
         int[] arr = generateSorted();
-        int numSwaps = (int) (DEFAULT_ARRAY_SIZE * level.getPercentage() / 100.0);
+        int numSwaps = (int) (arraySize * level.getPercentage() / 100.0);
 
         for (int swapsPerformed = 0; swapsPerformed < numSwaps; swapsPerformed++) {
-            int i = seededRandom.nextInt(DEFAULT_ARRAY_SIZE);
-            int j = seededRandom.nextInt(DEFAULT_ARRAY_SIZE);
+            int i = seededRandom.nextInt(arraySize);
+            int j = seededRandom.nextInt(arraySize);
             while (i == j) {
-                j = seededRandom.nextInt(DEFAULT_ARRAY_SIZE);
+                j = seededRandom.nextInt(arraySize);
             }
 
             int temp = arr[i];
@@ -70,10 +78,20 @@ public class ArrayGenerator {
         return arr;
     }
 
-    public static void main(String[] args) {
-        ArrayGenerator gen = new ArrayGenerator();
-        int[] Sorted = gen.generateNearlySorted(DisorderLevel.SORTED);
+    public int getArraySize() {
+        return arraySize;
+    }
+    public int getMaxValue() {
+        return maxValue;
+    }
 
+    public static void main(String[] args) {
+        System.out.println("Testing with default size:");
+        ArrayGenerator gen = new ArrayGenerator();
+        System.out.println("Array size: " + gen.getArraySize());
+        System.out.println("Max value: " + gen.getMaxValue());
+
+        int[] sorted = gen.generateNearlySorted(DisorderLevel.SORTED);
         int[] nearlySorted1 = gen.generateNearlySorted(DisorderLevel.ONE_PERCENT);
         int[] nearlySorted5 = gen.generateNearlySorted(DisorderLevel.FIVE_PERCENT);
         int[] nearlySorted10 = gen.generateNearlySorted(DisorderLevel.TEN_PERCENT);
@@ -86,6 +104,13 @@ public class ArrayGenerator {
         System.out.println("First 20 elements of 10%: " +
                 java.util.Arrays.toString(java.util.Arrays.copyOf(nearlySorted10, 20)));
         System.out.println("First 20 elements of Sorted: " +
-                java.util.Arrays.toString(java.util.Arrays.copyOf(Sorted, 20)));
+                java.util.Arrays.toString(java.util.Arrays.copyOf(sorted, 20)));
+
+        System.out.println("\nTesting with custom size (50000):");
+        ArrayGenerator gen2 = new ArrayGenerator(50000);
+        System.out.println("Array size: " + gen2.getArraySize());
+        System.out.println("Max value: " + gen2.getMaxValue());
+
+        // ArrayGenerator gen3 = new ArrayGenerator(200000);
     }
 }
