@@ -1,0 +1,132 @@
+<svg viewBox="0 0 900 180" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <!-- Dark gradient background -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="50%" style="stop-color:#1a2744"/>
+      <stop offset="100%" style="stop-color:#0d1117"/>
+    </linearGradient>
+
+    <!-- Gold shimmer gradient -->
+    <linearGradient id="shimmer" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e8d5a3;stop-opacity:0"/>
+      <stop offset="40%" style="stop-color:#f5e6c0;stop-opacity:1"/>
+      <stop offset="60%" style="stop-color:#e8d5a3;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#e8d5a3;stop-opacity:0"/>
+      <animateTransform attributeName="gradientTransform" type="translate" from="-1 0" to="1 0" dur="3s" repeatCount="indefinite"/>
+    </linearGradient>
+
+    <clipPath id="wave-clip">
+      <path d="M0,0 L900,0 L900,140 Q800,180 700,155 Q600,130 500,155 Q400,180 300,155 Q200,130 100,155 Q50,165 0,160 Z"/>
+    </clipPath>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="180" fill="url(#bg)"/>
+
+  <!-- Animated wave shape clipped -->
+  <g clip-path="url(#wave-clip)">
+    <rect width="900" height="180" fill="url(#bg)"/>
+
+    <!-- Subtle grid lines -->
+    <g stroke="#1e3a5f" stroke-width="0.4" opacity="0.5">
+      <line x1="0" y1="30" x2="900" y2="30"/>
+      <line x1="0" y1="60" x2="900" y2="60"/>
+      <line x1="0" y1="90" x2="900" y2="90"/>
+      <line x1="0" y1="120" x2="900" y2="120"/>
+      <line x1="150" y1="0" x2="150" y2="180"/>
+      <line x1="300" y1="0" x2="300" y2="180"/>
+      <line x1="450" y1="0" x2="450" y2="180"/>
+      <line x1="600" y1="0" x2="600" y2="180"/>
+      <line x1="750" y1="0" x2="750" y2="180"/>
+    </g>
+
+    <!-- Animated floating particles -->
+    <circle cx="80" cy="50" r="2" fill="#e8d5a3" opacity="0.6">
+      <animate attributeName="cy" values="50;35;50" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="820" cy="70" r="1.5" fill="#e8d5a3" opacity="0.5">
+      <animate attributeName="cy" values="70;55;70" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="200" cy="110" r="1" fill="#8b9cb0" opacity="0.4">
+      <animate attributeName="cy" values="110;95;110" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="700" cy="40" r="1.8" fill="#e8d5a3" opacity="0.5">
+      <animate attributeName="cy" values="40;28;40" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;0.8;0.5" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="450" cy="130" r="1.2" fill="#8b9cb0" opacity="0.35">
+      <animate attributeName="cy" values="130;115;130" dur="4.5s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Animated tree nodes (BST left, RBT right) -->
+    <!-- BST side - blue nodes -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="0.3s" fill="freeze"/>
+      <circle cx="110" cy="72" r="8" fill="#1a2744" stroke="#4a90d9" stroke-width="1.5"/>
+      <circle cx="75" cy="100" r="7" fill="#1a2744" stroke="#4a90d9" stroke-width="1.2"/>
+      <circle cx="145" cy="100" r="7" fill="#1a2744" stroke="#4a90d9" stroke-width="1.2"/>
+      <line x1="110" y1="80" x2="80" y2="93" stroke="#4a90d9" stroke-width="1" opacity="0.6"/>
+      <line x1="110" y1="80" x2="140" y2="93" stroke="#4a90d9" stroke-width="1" opacity="0.6"/>
+      <circle cx="58" cy="125" r="5.5" fill="#1a2744" stroke="#4a90d9" stroke-width="1"/>
+      <circle cx="92" cy="125" r="5.5" fill="#1a2744" stroke="#4a90d9" stroke-width="1"/>
+      <line x1="75" y1="107" x2="61" y2="120" stroke="#4a90d9" stroke-width="0.8" opacity="0.5"/>
+      <line x1="75" y1="107" x2="89" y2="120" stroke="#4a90d9" stroke-width="0.8" opacity="0.5"/>
+    </g>
+
+    <!-- RBT side - red nodes -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="0.6s" fill="freeze"/>
+      <circle cx="790" cy="72" r="8" fill="#3d0f0f" stroke="#c0392b" stroke-width="1.5"/>
+      <circle cx="755" cy="100" r="7" fill="#1a2744" stroke="#8b9cb0" stroke-width="1.2"/>
+      <circle cx="825" cy="100" r="7" fill="#3d0f0f" stroke="#c0392b" stroke-width="1.2"/>
+      <line x1="790" y1="80" x2="760" y2="93" stroke="#8b9cb0" stroke-width="1" opacity="0.6"/>
+      <line x1="790" y1="80" x2="820" y2="93" stroke="#c0392b" stroke-width="1" opacity="0.6"/>
+      <circle cx="738" cy="125" r="5.5" fill="#3d0f0f" stroke="#c0392b" stroke-width="1"/>
+      <circle cx="772" cy="125" r="5.5" fill="#1a2744" stroke="#8b9cb0" stroke-width="1"/>
+      <circle cx="808" cy="125" r="5.5" fill="#1a2744" stroke="#8b9cb0" stroke-width="1"/>
+      <circle cx="842" cy="125" r="5.5" fill="#3d0f0f" stroke="#c0392b" stroke-width="1"/>
+      <line x1="755" y1="107" x2="741" y2="120" stroke="#c0392b" stroke-width="0.8" opacity="0.5"/>
+      <line x1="755" y1="107" x2="769" y2="120" stroke="#8b9cb0" stroke-width="0.8" opacity="0.5"/>
+      <line x1="825" y1="107" x2="811" y2="120" stroke="#8b9cb0" stroke-width="0.8" opacity="0.5"/>
+      <line x1="825" y1="107" x2="839" y2="120" stroke="#c0392b" stroke-width="0.8" opacity="0.5"/>
+    </g>
+
+    <!-- Main title - fade + slide in -->
+    <text x="450" y="75" text-anchor="middle" font-family="'Segoe UI', 'DejaVu Sans', Arial, sans-serif"
+          font-size="34" font-weight="700" fill="url(#shimmer)" filter="url(#glow)" opacity="0">
+      BST &amp; RBTree Benchmark
+      <animate attributeName="opacity" values="0;1" dur="0.8s" begin="0.2s" fill="freeze"/>
+      <animate attributeName="y" values="85;75" dur="0.8s" begin="0.2s" fill="freeze"/>
+    </text>
+
+    <!-- Subtitle -->
+    <text x="450" y="105" text-anchor="middle" font-family="'Segoe UI', 'DejaVu Sans', Arial, sans-serif"
+          font-size="13" fill="#8b9cb0" opacity="0">
+      Binary Search Tree vs Red-Black Tree — Performance Analysis
+      <animate attributeName="opacity" values="0;1" dur="0.8s" begin="0.7s" fill="freeze"/>
+    </text>
+
+    <!-- Decorative divider line -->
+    <line x1="300" y1="115" x2="600" y2="115" stroke="#e8d5a3" stroke-width="0.5" opacity="0">
+      <animate attributeName="opacity" values="0;0.4" dur="0.6s" begin="1s" fill="freeze"/>
+    </line>
+
+    <!-- Bottom wave line animated -->
+    <path d="M0,155 Q225,130 450,155 Q675,180 900,155" fill="none" stroke="#e8d5a3" stroke-width="0.8" opacity="0.2">
+      <animate attributeName="d"
+        values="M0,155 Q225,130 450,155 Q675,180 900,155;M0,160 Q225,140 450,160 Q675,175 900,155;M0,155 Q225,130 450,155 Q675,180 900,155"
+        dur="6s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- Wave border at bottom -->
+  <path d="M0,160 Q225,140 450,160 Q675,180 900,155 L900,180 L0,180 Z" fill="#0d1117" opacity="0.8"/>
+</svg>
